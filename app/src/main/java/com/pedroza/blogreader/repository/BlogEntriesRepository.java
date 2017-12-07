@@ -45,6 +45,18 @@ public class BlogEntriesRepository {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 response.body();
+                //
+                //  Mocking Items for now. Not enough time to properly parse it.
+                Item item = new Item();
+                item.setTitle("Test Title 1");
+                item.setDescription("Test Description 1");
+                item.setLink("http://engineering.invisionapp.com/post/painless-microservices-migration/");
+
+                List<Item> items = new ArrayList<>();
+                for(int i=0; i<100; i++ ) {
+                    items.add(item);
+                }
+                mItems.setValue(items);
             }
 
             @Override

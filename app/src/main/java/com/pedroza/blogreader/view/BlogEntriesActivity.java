@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.pedroza.blogreader.R;
@@ -17,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 /**
@@ -40,6 +42,9 @@ public class BlogEntriesActivity extends AppCompatActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_entries);
+
+        ButterKnife.bind(this);
+        mListItemsRv.setLayoutManager(new LinearLayoutManager(this));
 
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(BlogEntriesActivityViewModel.class);
         mViewModel.getItems().observe(this, items -> {
